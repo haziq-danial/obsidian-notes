@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 380" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mem { fill:#eef4ff; stroke:#3a6bc7; stroke-width:1.5; }
+    .cache { fill:#fff3e0; stroke:#c77a3a; stroke-width:1.5; }
+    .lbl { font-size:12px; fill:#111; text-anchor:middle; }
+    .hdr { font-size:14px; fill:#111; text-anchor:middle; font-weight:bold; }
+    .line { stroke:#888; stroke-width:1.3; }
+  </style>
+
+  <!-- Direct mapped -->
+  <g transform="translate(20,40)">
+    <text x="130" y="-10" class="hdr">Direct-Mapped</text>
+    <!-- memory blocks 0..7 -->
+    <g transform="translate(0,0)">
+      <text x="30" y="-2" class="lbl">Memory</text>
+      <rect x="0" y="10" width="60" height="24" class="mem"/><text x="30" y="26" class="lbl">0</text>
+      <rect x="0" y="34" width="60" height="24" class="mem"/><text x="30" y="50" class="lbl">1</text>
+      <rect x="0" y="58" width="60" height="24" class="mem"/><text x="30" y="74" class="lbl">2</text>
+      <rect x="0" y="82" width="60" height="24" class="mem"/><text x="30" y="98" class="lbl">3</text>
+      <rect x="0" y="106" width="60" height="24" class="mem"/><text x="30" y="122" class="lbl">4 → set 0</text>
+      <rect x="0" y="130" width="60" height="24" class="mem"/><text x="30" y="146" class="lbl">5 → set 1</text>
+      <rect x="0" y="154" width="60" height="24" class="mem"/><text x="30" y="170" class="lbl">6 → set 2</text>
+      <rect x="0" y="178" width="60" height="24" class="mem"/><text x="30" y="194" class="lbl">7 → set 3</text>
+    </g>
+    <g transform="translate(160,10)">
+      <text x="30" y="-12" class="lbl">Cache</text>
+      <rect x="0" y="0" width="60" height="24" class="cache"/><text x="30" y="16" class="lbl">set 0</text>
+      <rect x="0" y="24" width="60" height="24" class="cache"/><text x="30" y="40" class="lbl">set 1</text>
+      <rect x="0" y="48" width="60" height="24" class="cache"/><text x="30" y="64" class="lbl">set 2</text>
+      <rect x="0" y="72" width="60" height="24" class="cache"/><text x="30" y="88" class="lbl">set 3</text>
+    </g>
+    <line x1="60" y1="22" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="118" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="46" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="142" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="70" x2="160" y2="70" class="line"/>
+    <line x1="60" y1="166" x2="160" y2="70" class="line"/>
+    <line x1="60" y1="94" x2="160" y2="94" class="line"/>
+    <line x1="60" y1="190" x2="160" y2="94" class="line"/>
+    <text x="130" y="230" class="lbl">Each block maps to exactly ONE cache line: (block #) mod (#lines)</text>
+  </g>
+
+  <!-- Fully associative -->
+  <g transform="translate(360,40)">
+    <text x="130" y="-10" class="hdr">Fully Associative</text>
+    <g transform="translate(0,0)">
+      <rect x="0" y="10" width="60" height="24" class="mem"/><text x="30" y="26" class="lbl">0</text>
+      <rect x="0" y="34" width="60" height="24" class="mem"/><text x="30" y="50" class="lbl">1</text>
+      <rect x="0" y="58" width="60" height="24" class="mem"/><text x="30" y="74" class="lbl">2</text>
+      <rect x="0" y="82" width="60" height="24" class="mem"/><text x="30" y="98" class="lbl">3</text>
+    </g>
+    <g transform="translate(160,10)">
+      <rect x="0" y="0" width="60" height="24" class="cache"/><text x="30" y="16" class="lbl">line 0</text>
+      <rect x="0" y="24" width="60" height="24" class="cache"/><text x="30" y="40" class="lbl">line 1</text>
+    </g>
+    <line x1="60" y1="22" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="22" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="46" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="46" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="70" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="70" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="94" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="94" x2="160" y2="46" class="line"/>
+    <text x="130" y="230" class="lbl">Any block can go in any line — needs full tag comparison (CAM), most flexible, costliest hardware</text>
+  </g>
+
+  <!-- Set associative -->
+  <g transform="translate(680,40)">
+    <text x="130" y="-10" class="hdr">2-Way Set Associative</text>
+    <g transform="translate(0,0)">
+      <rect x="0" y="10" width="60" height="24" class="mem"/><text x="30" y="26" class="lbl">0</text>
+      <rect x="0" y="34" width="60" height="24" class="mem"/><text x="30" y="50" class="lbl">1</text>
+      <rect x="0" y="58" width="60" height="24" class="mem"/><text x="30" y="74" class="lbl">2</text>
+      <rect x="0" y="82" width="60" height="24" class="mem"/><text x="30" y="98" class="lbl">3</text>
+    </g>
+    <g transform="translate(160,10)">
+      <rect x="0" y="0" width="60" height="24" class="cache"/><text x="30" y="16" class="lbl">set0-A</text>
+      <rect x="0" y="24" width="60" height="24" class="cache"/><text x="30" y="40" class="lbl">set0-B</text>
+      <rect x="0" y="48" width="60" height="24" class="cache"/><text x="30" y="64" class="lbl">set1-A</text>
+      <rect x="0" y="72" width="60" height="24" class="cache"/><text x="30" y="88" class="lbl">set1-B</text>
+    </g>
+    <line x1="60" y1="22" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="22" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="70" x2="160" y2="22" class="line"/>
+    <line x1="60" y1="70" x2="160" y2="46" class="line"/>
+    <line x1="60" y1="46" x2="160" y2="70" class="line"/>
+    <line x1="60" y1="46" x2="160" y2="94" class="line"/>
+    <line x1="60" y1="94" x2="160" y2="70" class="line"/>
+    <line x1="60" y1="94" x2="160" y2="94" class="line"/>
+    <text x="130" y="230" class="lbl">Block maps to one SET of N lines (N-way); within the set, any of N ways may hold it</text>
+  </g>
+</svg>

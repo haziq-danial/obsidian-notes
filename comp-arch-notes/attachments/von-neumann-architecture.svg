@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrowV" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .cpuBox { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .lbl { font-size:15px; fill:#222; }
+    .sub { font-size:12px; fill:#555; }
+    .bus { stroke:#444; stroke-width:2; fill:none; marker-end:url(#arrowV); }
+  </style>
+
+  <!-- CPU container -->
+  <rect x="60" y="30" width="320" height="200" rx="10" class="cpuBox"/>
+  <text x="220" y="55" text-anchor="middle" class="lbl" font-weight="bold">CPU</text>
+
+  <rect x="80" y="70" width="130" height="60" rx="6" class="box"/>
+  <text x="145" y="95" text-anchor="middle" class="lbl">Control Unit</text>
+  <text x="145" y="112" text-anchor="middle" class="sub">(CU)</text>
+
+  <rect x="230" y="70" width="130" height="60" rx="6" class="box"/>
+  <text x="295" y="95" text-anchor="middle" class="lbl">ALU</text>
+  <text x="295" y="112" text-anchor="middle" class="sub">Arithmetic / Logic</text>
+
+  <rect x="80" y="150" width="280" height="60" rx="6" class="box"/>
+  <text x="220" y="175" text-anchor="middle" class="lbl">Registers</text>
+  <text x="220" y="192" text-anchor="middle" class="sub">PC, IR, MAR, MDR, GPRs</text>
+
+  <!-- Memory -->
+  <rect x="480" y="70" width="220" height="140" rx="10" class="box"/>
+  <text x="590" y="95" text-anchor="middle" class="lbl" font-weight="bold">Main Memory</text>
+  <text x="590" y="115" text-anchor="middle" class="sub">Single unified address space</text>
+  <text x="590" y="135" text-anchor="middle" class="sub">for both instructions</text>
+  <text x="590" y="152" text-anchor="middle" class="sub">and data</text>
+
+  <!-- Shared bus (the defining feature) -->
+  <path d="M380,120 L480,120" class="bus"/>
+  <path d="M480,150 L380,150" class="bus"/>
+  <text x="430" y="112" text-anchor="middle" class="sub">Address</text>
+  <text x="430" y="167" text-anchor="middle" class="sub">Data / Instr.</text>
+
+  <!-- I/O -->
+  <rect x="480" y="250" width="220" height="60" rx="8" class="box"/>
+  <text x="590" y="285" text-anchor="middle" class="lbl">I/O Devices</text>
+  <path d="M590,210 L590,250" class="bus"/>
+
+  <rect x="60" y="250" width="320" height="60" rx="8" class="box"/>
+  <text x="220" y="285" text-anchor="middle" class="lbl">System Bus (Address / Data / Control)</text>
+  <path d="M220,230 L220,250" class="bus"/>
+  <path d="M480,280 L380,280" class="bus"/>
+
+  <text x="380" y="345" text-anchor="middle" class="sub" font-style="italic">
+    Bottleneck: one shared bus for code and data (the "von Neumann bottleneck")
+  </text>
+</svg>

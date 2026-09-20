@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .lbl { font-size:14px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#333; text-anchor:middle; }
+    .side { font-size:12px; fill:#444; }
+  </style>
+
+  <!-- pyramid levels, top = smallest/fastest -->
+  <polygon points="380,20 460,80 300,80" fill="#c62828" stroke="#7f1d1d" stroke-width="1.5"/>
+  <text x="380" y="58" class="lbl" fill="white">Registers</text>
+
+  <polygon points="300,80 460,80 500,140 260,140" fill="#e65100" stroke="#7f1d1d" stroke-width="1.5"/>
+  <text x="380" y="118" class="lbl" fill="white">L1 Cache</text>
+
+  <polygon points="260,140 500,140 540,200 220,200" fill="#f9a825" stroke="#7f1d1d" stroke-width="1.5"/>
+  <text x="380" y="178" class="lbl">L2 Cache</text>
+
+  <polygon points="220,200 540,200 580,260 180,260" fill="#9ccc65" stroke="#33691e" stroke-width="1.5"/>
+  <text x="380" y="238" class="lbl">L3 Cache (shared)</text>
+
+  <polygon points="180,260 580,260 630,330 130,330" fill="#4fc3f7" stroke="#01579b" stroke-width="1.5"/>
+  <text x="380" y="303" class="lbl">Main Memory (DRAM)</text>
+
+  <polygon points="130,330 630,330 690,410 70,410" fill="#7986cb" stroke="#1a237e" stroke-width="1.5"/>
+  <text x="380" y="378" class="lbl" fill="white">Secondary Storage (SSD / HDD)</text>
+
+  <polygon points="70,410 690,410 730,450 30,450" fill="#546e7a" stroke="#263238" stroke-width="1.5"/>
+  <text x="380" y="434" class="lbl" fill="white">Remote / Cloud / Tape (offline)</text>
+
+  <!-- Left axis: speed -->
+  <text x="20" y="45" class="side" font-weight="bold">Faster</text>
+  <line x1="20" y1="55" x2="20" y2="420" stroke="#333" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="20" y="435" class="side" font-weight="bold">Slower</text>
+
+  <!-- Right axis: capacity / cost -->
+  <text x="700" y="45" class="side" font-weight="bold" text-anchor="end">Costlier / bit</text>
+  <text x="700" y="435" class="side" font-weight="bold" text-anchor="end">Cheaper / bit, larger</text>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="16" text-anchor="middle" font-size="16" font-weight="bold">Memory Hierarchy Pyramid</text>
+</svg>

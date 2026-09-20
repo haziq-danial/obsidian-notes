@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .IF { fill:#e3f2fd; stroke:#1565c0; }
+    .ID { fill:#e8f5e9; stroke:#2e7d32; }
+    .EX { fill:#fff3e0; stroke:#e65100; }
+    .MEM{ fill:#fce4ec; stroke:#ad1457; }
+    .WB { fill:#ede7f6; stroke:#5e35b1; }
+    .cell { stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; dominant-baseline:middle; }
+    .hdr { font-size:13px; fill:#111; text-anchor:middle; font-weight:bold; }
+    .axis { font-size:12px; fill:#333; text-anchor:middle; }
+  </style>
+
+  <text x="450" y="24" text-anchor="middle" font-size="16" font-weight="bold">Classic 5-Stage RISC Pipeline</text>
+
+  <!-- Column headers: cycles -->
+  <g transform="translate(160,50)">
+    <text class="axis" x="0" y="0">Cycle:</text>
+    <text class="axis" x="60"  y="0">1</text>
+    <text class="axis" x="120" y="0">2</text>
+    <text class="axis" x="180" y="0">3</text>
+    <text class="axis" x="240" y="0">4</text>
+    <text class="axis" x="300" y="0">5</text>
+    <text class="axis" x="360" y="0">6</text>
+    <text class="axis" x="420" y="0">7</text>
+    <text class="axis" x="480" y="0">8</text>
+  </g>
+
+  <!-- rows for 4 instructions, diagonal pipeline fill -->
+  <!-- Instruction 1: IF ID EX MEM WB at cycles 1..5 -->
+  <g transform="translate(70,70)">
+    <text x="0" y="35" class="axis" text-anchor="end">Instr 1</text>
+    <text x="0" y="85" class="axis" text-anchor="end">Instr 2</text>
+    <text x="0" y="135" class="axis" text-anchor="end">Instr 3</text>
+    <text x="0" y="185" class="axis" text-anchor="end">Instr 4</text>
+    <text x="0" y="235" class="axis" text-anchor="end">Instr 5</text>
+
+    <!-- helper: each stage box is 55 wide, 40 tall, cycles start x=20 -->
+    <!-- Instr1 row y=15 -->
+    <rect x="20"  y="15" width="55" height="40" class="IF cell"/><text x="47" y="35" class="lbl">IF</text>
+    <rect x="80"  y="15" width="55" height="40" class="ID cell"/><text x="107" y="35" class="lbl">ID</text>
+    <rect x="140" y="15" width="55" height="40" class="EX cell"/><text x="167" y="35" class="lbl">EX</text>
+    <rect x="200" y="15" width="55" height="40" class="MEM cell"/><text x="227" y="35" class="lbl">MEM</text>
+    <rect x="260" y="15" width="55" height="40" class="WB cell"/><text x="287" y="35" class="lbl">WB</text>
+
+    <!-- Instr2 row y=65, shifted 1 cycle -->
+    <rect x="80"  y="65" width="55" height="40" class="IF cell"/><text x="107" y="85" class="lbl">IF</text>
+    <rect x="140" y="65" width="55" height="40" class="ID cell"/><text x="167" y="85" class="lbl">ID</text>
+    <rect x="200" y="65" width="55" height="40" class="EX cell"/><text x="227" y="85" class="lbl">EX</text>
+    <rect x="260" y="65" width="55" height="40" class="MEM cell"/><text x="287" y="85" class="lbl">MEM</text>
+    <rect x="320" y="65" width="55" height="40" class="WB cell"/><text x="347" y="85" class="lbl">WB</text>
+
+    <!-- Instr3 row y=115 -->
+    <rect x="140" y="115" width="55" height="40" class="IF cell"/><text x="167" y="135" class="lbl">IF</text>
+    <rect x="200" y="115" width="55" height="40" class="ID cell"/><text x="227" y="135" class="lbl">ID</text>
+    <rect x="260" y="115" width="55" height="40" class="EX cell"/><text x="287" y="135" class="lbl">EX</text>
+    <rect x="320" y="115" width="55" height="40" class="MEM cell"/><text x="347" y="135" class="lbl">MEM</text>
+    <rect x="380" y="115" width="55" height="40" class="WB cell"/><text x="407" y="135" class="lbl">WB</text>
+
+    <!-- Instr4 row y=165 -->
+    <rect x="200" y="165" width="55" height="40" class="IF cell"/><text x="227" y="185" class="lbl">IF</text>
+    <rect x="260" y="165" width="55" height="40" class="ID cell"/><text x="287" y="185" class="lbl">ID</text>
+    <rect x="320" y="165" width="55" height="40" class="EX cell"/><text x="347" y="185" class="lbl">EX</text>
+    <rect x="380" y="165" width="55" height="40" class="MEM cell"/><text x="407" y="185" class="lbl">MEM</text>
+    <rect x="440" y="165" width="55" height="40" class="WB cell"/><text x="467" y="185" class="lbl">WB</text>
+
+    <!-- Instr5 row y=215 -->
+    <rect x="260" y="215" width="55" height="40" class="IF cell"/><text x="287" y="235" class="lbl">IF</text>
+    <rect x="320" y="215" width="55" height="40" class="ID cell"/><text x="347" y="235" class="lbl">ID</text>
+    <rect x="380" y="215" width="55" height="40" class="EX cell"/><text x="407" y="235" class="lbl">EX</text>
+    <rect x="440" y="215" width="55" height="40" class="MEM cell"/><text x="467" y="235" class="lbl">MEM</text>
+    <rect x="500" y="215" width="55" height="40" class="WB cell"/><text x="527" y="235" class="lbl">WB</text>
+  </g>
+
+  <text x="450" y="345" text-anchor="middle" font-size="12" fill="#333">
+    IF = Instruction Fetch · ID = Decode/Register Read · EX = Execute (ALU) · MEM = Memory Access · WB = Write Back
+  </text>
+  <text x="450" y="368" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Once full, the pipeline retires one instruction per cycle (ideal CPI = 1) despite each instruction taking 5 cycles latency.
+  </text>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .g { fill:#eef4ff; stroke:#333; stroke-width:2; }
+    .lbl { font-size:14px; fill:#222; text-anchor:middle; }
+    .t { font-size:16px; fill:#111; font-weight:bold; text-anchor:middle; }
+    .wire { stroke:#333; stroke-width:2; fill:none; }
+  </style>
+
+  <!-- AND -->
+  <g transform="translate(20,20)">
+    <text x="90" y="16" class="t">AND</text>
+    <path d="M40,40 h40 a40,40 0 0 1 0,80 h-40 Z" class="g"/>
+    <line x1="0" y1="55" x2="40" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="40" y2="105" class="wire"/>
+    <line x1="120" y1="80" x2="160" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = A · B</text>
+  </g>
+
+  <!-- OR -->
+  <g transform="translate(220,20)">
+    <text x="90" y="16" class="t">OR</text>
+    <path d="M40,40 Q80,40 120,80 Q80,120 40,120 Q60,80 40,40 Z" class="g"/>
+    <line x1="0" y1="55" x2="45" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="45" y2="105" class="wire"/>
+    <line x1="120" y1="80" x2="160" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = A + B</text>
+  </g>
+
+  <!-- NOT -->
+  <g transform="translate(420,20)">
+    <text x="80" y="16" class="t">NOT</text>
+    <path d="M40,40 L40,120 L110,80 Z" class="g"/>
+    <circle cx="120" cy="80" r="7" class="g"/>
+    <line x1="0" y1="80" x2="40" y2="80" class="wire"/>
+    <line x1="127" y1="80" x2="160" y2="80" class="wire"/>
+    <text x="80" y="140" class="lbl">Y = A'</text>
+  </g>
+
+  <!-- NAND -->
+  <g transform="translate(620,20)">
+    <text x="90" y="16" class="t">NAND</text>
+    <path d="M40,40 h40 a40,40 0 0 1 0,80 h-40 Z" class="g"/>
+    <circle cx="127" cy="80" r="7" class="g"/>
+    <line x1="0" y1="55" x2="40" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="40" y2="105" class="wire"/>
+    <line x1="134" y1="80" x2="170" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = (A · B)'</text>
+  </g>
+
+  <!-- NOR -->
+  <g transform="translate(20,220)">
+    <text x="90" y="16" class="t">NOR</text>
+    <path d="M40,40 Q80,40 120,80 Q80,120 40,120 Q60,80 40,40 Z" class="g"/>
+    <circle cx="127" cy="80" r="7" class="g"/>
+    <line x1="0" y1="55" x2="45" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="45" y2="105" class="wire"/>
+    <line x1="134" y1="80" x2="170" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = (A + B)'</text>
+  </g>
+
+  <!-- XOR -->
+  <g transform="translate(220,220)">
+    <text x="90" y="16" class="t">XOR</text>
+    <path d="M30,40 Q70,40 110,80 Q70,120 30,120 Q50,80 30,40 Z" class="g"/>
+    <path d="M20,40 Q40,80 20,120" fill="none" stroke="#333" stroke-width="2"/>
+    <line x1="0" y1="55" x2="30" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="30" y2="105" class="wire"/>
+    <line x1="110" y1="80" x2="160" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = A ⊕ B</text>
+  </g>
+
+  <!-- XNOR -->
+  <g transform="translate(420,220)">
+    <text x="90" y="16" class="t">XNOR</text>
+    <path d="M30,40 Q70,40 110,80 Q70,120 30,120 Q50,80 30,40 Z" class="g"/>
+    <path d="M20,40 Q40,80 20,120" fill="none" stroke="#333" stroke-width="2"/>
+    <circle cx="117" cy="80" r="7" class="g"/>
+    <line x1="0" y1="55" x2="30" y2="55" class="wire"/>
+    <line x1="0" y1="105" x2="30" y2="105" class="wire"/>
+    <line x1="124" y1="80" x2="170" y2="80" class="wire"/>
+    <text x="90" y="140" class="lbl">Y = (A ⊕ B)'</text>
+  </g>
+
+  <!-- Truth table -->
+  <g transform="translate(640,210)">
+    <text x="90" y="10" class="t">Truth Table Reference</text>
+    <text x="0" y="35" class="lbl" text-anchor="start">A B | AND OR NAND NOR XOR XNOR</text>
+    <text x="0" y="55" class="lbl" text-anchor="start">0 0 |  0   0   1    1   0    1</text>
+    <text x="0" y="75" class="lbl" text-anchor="start">0 1 |  0   1   1    0   1    0</text>
+    <text x="0" y="95" class="lbl" text-anchor="start">1 0 |  0   1   1    0   1    0</text>
+    <text x="0" y="115" class="lbl" text-anchor="start">1 1 |  1   1   0    0   0    1</text>
+  </g>
+</svg>

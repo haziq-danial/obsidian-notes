@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrowH" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .cpuBox { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .lbl { font-size:15px; fill:#222; }
+    .sub { font-size:12px; fill:#555; }
+    .bus { stroke:#444; stroke-width:2; fill:none; marker-end:url(#arrowH); }
+  </style>
+
+  <rect x="290" y="110" width="180" height="100" rx="10" class="cpuBox"/>
+  <text x="380" y="140" text-anchor="middle" class="lbl" font-weight="bold">CPU</text>
+  <text x="380" y="160" text-anchor="middle" class="sub">Control + ALU +</text>
+  <text x="380" y="176" text-anchor="middle" class="sub">Registers</text>
+
+  <rect x="40" y="40" width="200" height="80" rx="10" class="box"/>
+  <text x="140" y="70" text-anchor="middle" class="lbl">Instruction Memory</text>
+  <text x="140" y="90" text-anchor="middle" class="sub">separate instruction bus</text>
+
+  <rect x="40" y="200" width="200" height="80" rx="10" class="box"/>
+  <text x="140" y="230" text-anchor="middle" class="lbl">Data Memory</text>
+  <text x="140" y="250" text-anchor="middle" class="sub">separate data bus</text>
+
+  <path d="M240,80 L290,140" class="bus"/>
+  <path d="M290,180 L240,240" class="bus"/>
+
+  <rect x="520" y="120" width="200" height="80" rx="10" class="box"/>
+  <text x="620" y="150" text-anchor="middle" class="lbl">I/O Devices</text>
+  <path d="M470,160 L520,160" class="bus"/>
+
+  <text x="380" y="300" text-anchor="middle" class="sub" font-style="italic">
+    Independent instruction and data paths allow simultaneous fetch of both — no shared-bus bottleneck
+  </text>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ad" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .mux { fill:#f5e9ff; stroke:#8a4fd1; stroke-width:2; }
+    .lbl { font-size:13px; fill:#222; text-anchor:middle; }
+    .small { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ad); }
+  </style>
+
+  <!-- PC -->
+  <rect x="20" y="200" width="70" height="50" rx="6" class="box"/>
+  <text x="55" y="230" class="lbl">PC</text>
+
+  <!-- Instruction memory -->
+  <rect x="140" y="180" width="120" height="90" rx="6" class="box"/>
+  <text x="200" y="220" class="lbl">Instruction</text>
+  <text x="200" y="236" class="lbl">Memory</text>
+
+  <path d="M90,225 L140,225" class="w"/>
+
+  <!-- PC+4 adder -->
+  <rect x="140" y="60" width="90" height="50" rx="20" class="box"/>
+  <text x="185" y="90" class="lbl">+4</text>
+  <path d="M55,200 L55,85 L140,85" class="w"/>
+
+  <!-- Register file -->
+  <rect x="330" y="150" width="130" height="130" rx="6" class="box"/>
+  <text x="395" y="185" class="lbl">Register File</text>
+  <text x="395" y="203" class="small">Rs1, Rs2 → read</text>
+  <text x="395" y="219" class="small">Rd ← write</text>
+  <path d="M260,200 L330,200" class="w"/>
+  <path d="M260,240 L330,240" class="w"/>
+
+  <!-- Sign extend -->
+  <rect x="330" y="310" width="130" height="50" rx="6" class="box"/>
+  <text x="395" y="340" class="lbl">Immediate / Sign-Extend</text>
+  <path d="M260,255 L280,255 L280,335 L330,335" class="w"/>
+
+  <!-- ALU -->
+  <polygon points="520,160 560,190 560,270 520,300 500,260 500,200" class="box"/>
+  <text x="535" y="230" class="lbl">ALU</text>
+  <path d="M460,200 L500,215" class="w"/>
+  <path d="M460,335 Q490,335 500,270" class="w" fill="none"/>
+
+  <!-- Mux before ALU (reg vs imm) -->
+  <polygon points="480,255 480,285 500,275 500,265" class="mux"/>
+  <path d="M460,270 L480,270" class="w"/>
+
+  <!-- ALU control -->
+  <rect x="480,220" width="0" height="0" class="box" opacity="0"/>
+
+  <!-- Data memory -->
+  <rect x="640" y="180" width="130" height="120" rx="6" class="box"/>
+  <text x="705" y="215" class="lbl">Data Memory</text>
+  <text x="705" y="233" class="small">Load / Store</text>
+  <path d="M562,235 L640,235" class="w"/>
+
+  <!-- Writeback mux -->
+  <polygon points="850,190 850,290 890,260 890,220" class="mux"/>
+  <text x="865" y="243" class="small">WB</text>
+  <path d="M770,215 L850,215 L850,225" class="w"/>
+  <path d="M562,235 Q810,235 850,255" class="w"/>
+  <path d="M890,255 Q950,255 950,80 L395,80 L395,150" class="w"/>
+  <text x="700" y="60" class="small">Write-back to Register File</text>
+
+  <!-- Control unit -->
+  <rect x="140" y="380" width="620" height="60" rx="8" class="box" fill="#fff3e0" stroke="#c77a3a"/>
+  <text x="450" y="405" class="lbl" font-weight="bold">Control Unit</text>
+  <text x="450" y="423" class="small">decodes opcode → RegWrite, ALUOp, MemRead, MemWrite, MemtoReg, Branch, ALUSrc</text>
+  <path d="M200,270 L200,380" class="w" stroke-dasharray="4,3"/>
+  <path d="M420,380 L490,300" class="w" stroke-dasharray="4,3"/>
+  <path d="M705,380 L705,300" class="w" stroke-dasharray="4,3"/>
+
+  <text x="500" y="20" text-anchor="middle" font-size="16" font-weight="bold">Single-Cycle CPU Datapath (simplified)</text>
+</svg>
