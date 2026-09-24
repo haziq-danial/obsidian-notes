@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 520" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:1.5; }
+    .cell { fill:#fff3e0; stroke:#c77a3a; stroke-width:1.3; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .hdr { font-size:15px; fill:#111; text-anchor:middle; font-weight:bold; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .key { font-size:12px; fill:#1565c0; font-weight:bold; }
+  </style>
+
+  <text x="470" y="24" text-anchor="middle" font-size="17" font-weight="bold">Redis Core Data Types</text>
+
+  <!-- String -->
+  <g transform="translate(20,50)">
+    <text x="100" y="0" class="hdr">String</text>
+    <text x="0" y="20" class="key">user:1:name</text>
+    <rect x="0" y="30" width="200" height="34" class="cell"/>
+    <text x="100" y="52" class="lbl">"Alice"</text>
+    <text x="100" y="85" class="sub">binary-safe, up to 512MB</text>
+  </g>
+
+  <!-- List -->
+  <g transform="translate(260,50)">
+    <text x="110" y="0" class="hdr">List</text>
+    <text x="0" y="20" class="key">queue:jobs</text>
+    <rect x="0" y="30" width="55" height="34" class="cell"/><text x="27" y="52" class="lbl">job1</text>
+    <rect x="55" y="30" width="55" height="34" class="cell"/><text x="82" y="52" class="lbl">job2</text>
+    <rect x="110" y="30" width="55" height="34" class="cell"/><text x="137" y="52" class="lbl">job3</text>
+    <rect x="165" y="30" width="55" height="34" class="cell"/><text x="192" y="52" class="lbl">job4</text>
+    <text x="110" y="85" class="sub">doubly-linked list (quicklist)</text>
+    <text x="0" y="100" class="sub" text-anchor="start">LPUSH ←</text>
+    <text x="220" y="100" class="sub" text-anchor="end">→ RPUSH</text>
+  </g>
+
+  <!-- Hash -->
+  <g transform="translate(520,50)">
+    <text x="110" y="0" class="hdr">Hash</text>
+    <text x="0" y="20" class="key">user:1</text>
+    <rect x="0" y="30" width="90" height="28" class="cell"/><text x="45" y="49" class="lbl" font-size="11">name</text>
+    <rect x="90" y="30" width="130" height="28" fill="#fff" stroke="#c77a3a"/><text x="155" y="49" class="lbl" font-size="11">Alice</text>
+    <rect x="0" y="58" width="90" height="28" class="cell"/><text x="45" y="77" class="lbl" font-size="11">age</text>
+    <rect x="90" y="58" width="130" height="28" fill="#fff" stroke="#c77a3a"/><text x="155" y="77" class="lbl" font-size="11">30</text>
+    <rect x="0" y="86" width="90" height="28" class="cell"/><text x="45" y="105" class="lbl" font-size="11">email</text>
+    <rect x="90" y="86" width="130" height="28" fill="#fff" stroke="#c77a3a"/><text x="155" y="105" class="lbl" font-size="11">a@x.com</text>
+    <text x="110" y="130" class="sub">field-value map — mini objects</text>
+  </g>
+
+  <!-- Set -->
+  <g transform="translate(20,210)">
+    <text x="110" y="0" class="hdr">Set</text>
+    <text x="0" y="20" class="key">tags:post:1</text>
+    <circle cx="40" cy="55" r="28" class="cell"/><text x="40" y="59" class="lbl" font-size="11">redis</text>
+    <circle cx="100" cy="45" r="28" class="cell"/><text x="100" y="49" class="lbl" font-size="11">db</text>
+    <circle cx="160" cy="55" r="28" class="cell"/><text x="160" y="59" class="lbl" font-size="11">nosql</text>
+    <text x="110" y="100" class="sub">unordered, unique members</text>
+    <text x="110" y="115" class="sub">O(1) SADD / SISMEMBER</text>
+  </g>
+
+  <!-- Sorted Set -->
+  <g transform="translate(280,210)">
+    <text x="120" y="0" class="hdr">Sorted Set (ZSet)</text>
+    <text x="0" y="20" class="key">leaderboard</text>
+    <rect x="0" y="30" width="80" height="28" class="cell"/><text x="40" y="49" class="lbl" font-size="11">alice</text>
+    <rect x="80" y="30" width="60" height="28" fill="#fff" stroke="#c77a3a"/><text x="110" y="49" class="lbl" font-size="11">score:99</text>
+    <rect x="0" y="58" width="80" height="28" class="cell"/><text x="40" y="77" class="lbl" font-size="11">bob</text>
+    <rect x="80" y="58" width="60" height="28" fill="#fff" stroke="#c77a3a"/><text x="110" y="77" class="lbl" font-size="11">score:85</text>
+    <rect x="0" y="86" width="80" height="28" class="cell"/><text x="40" y="105" class="lbl" font-size="11">carol</text>
+    <rect x="80" y="86" width="60" height="28" fill="#fff" stroke="#c77a3a"/><text x="110" y="105" class="lbl" font-size="11">score:70</text>
+    <text x="120" y="130" class="sub">skip list + hash table, ordered by score</text>
+  </g>
+
+  <!-- Stream -->
+  <g transform="translate(600,210)">
+    <text x="120" y="0" class="hdr">Stream</text>
+    <text x="0" y="20" class="key">events:clicks</text>
+    <rect x="0" y="30" width="70" height="60" class="cell"/><text x="35" y="55" class="lbl" font-size="10">1690-0</text><text x="35" y="72" class="lbl" font-size="10">{x:1}</text>
+    <rect x="80" y="30" width="70" height="60" class="cell"/><text x="115" y="55" class="lbl" font-size="10">1691-0</text><text x="115" y="72" class="lbl" font-size="10">{x:2}</text>
+    <rect x="160" y="30" width="70" height="60" class="cell"/><text x="195" y="55" class="lbl" font-size="10">1692-0</text><text x="195" y="72" class="lbl" font-size="10">{x:3}</text>
+    <text x="120" y="105" class="sub">append-only log, consumer groups</text>
+  </g>
+
+  <!-- Bitmap / HLL / Geo -->
+  <g transform="translate(20,390)">
+    <text x="130" y="0" class="hdr">Bitmap / HyperLogLog / Geo</text>
+    <rect x="0" y="15" width="260" height="18" class="cell"/>
+    <text x="130" y="28" class="lbl" font-size="10">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 1 (bitmap: online users)</text>
+    <text x="130" y="55" class="sub">HyperLogLog: approx-distinct-count in ~12KB regardless of cardinality</text>
+    <text x="130" y="72" class="sub">Geo: sorted set under the hood, scored by geohash</text>
+  </g>
+
+  <g transform="translate(560,390)">
+    <text x="90" y="0" class="hdr">All types share:</text>
+    <text x="90" y="25" class="sub">one string KEY → typed VALUE</text>
+    <text x="90" y="42" class="sub">optional TTL (expiry)</text>
+    <text x="90" y="59" class="sub">O(1) key lookup via global hash table</text>
+  </g>
+</svg>

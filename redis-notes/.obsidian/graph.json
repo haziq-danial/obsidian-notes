@@ -1,0 +1,22 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    { "query": "path:\"00 MOC\"", "color": { "a": 1, "rgb": 14701138 } },
+    { "query": "path:\"01 Fundamentals\"", "color": { "a": 1, "rgb": 5431378 } },
+    { "query": "path:\"02 Data Structures\"", "color": { "a": 1, "rgb": 14027846 } },
+    { "query": "path:\"03 Persistence\"", "color": { "a": 1, "rgb": 3441314 } },
+    { "query": "path:\"04 Replication and HA\"", "color": { "a": 1, "rgb": 9445586 } },
+    { "query": "path:\"05 Performance\"", "color": { "a": 1, "rgb": 15761536 } },
+    { "query": "path:\"06 Use Cases\"", "color": { "a": 1, "rgb": 2201331 } },
+    { "query": "path:\"07 Administration\"", "color": { "a": 1, "rgb": 12345666 } },
+    { "query": "path:\"08 Glossary\"", "color": { "a": 1, "rgb": 8355711 } }
+  ],
+  "collapse-display": true,
+  "showArrow": true
+}

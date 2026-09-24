@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .client { fill:#e3f2fd; stroke:#1565c0; stroke-width:2; }
+    .core { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .store { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .disk { fill:#ede7f6; stroke:#5e35b1; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar1); }
+  </style>
+
+  <text x="410" y="24" text-anchor="middle" font-size="16" font-weight="bold">Redis Server: Single-Threaded Event Loop</text>
+
+  <!-- clients -->
+  <rect x="20" y="60" width="110" height="40" rx="6" class="client"/><text x="75" y="85" class="lbl">Client A</text>
+  <rect x="20" y="115" width="110" height="40" rx="6" class="client"/><text x="75" y="140" class="lbl">Client B</text>
+  <rect x="20" y="170" width="110" height="40" rx="6" class="client"/><text x="75" y="195" class="lbl">Client C</text>
+  <text x="75" y="225" class="sub">(thousands of conns)</text>
+
+  <!-- event loop -->
+  <rect x="220" y="70" width="200" height="160" rx="10" class="core"/>
+  <text x="320" y="95" class="lbl" font-weight="bold">Event Loop (epoll/kqueue)</text>
+  <text x="320" y="115" class="sub">single command thread</text>
+  <rect x="240" y="130" width="160" height="30" rx="5" fill="#fff" stroke="#c77a3a"/>
+  <text x="320" y="150" class="sub">1. Read command</text>
+  <rect x="240" y="165" width="160" height="30" rx="5" fill="#fff" stroke="#c77a3a"/>
+  <text x="320" y="185" class="sub">2. Execute atomically</text>
+  <rect x="240" y="200" width="160" height="20" rx="5" fill="#fff" stroke="#c77a3a"/>
+  <text x="320" y="214" class="sub">3. Write reply</text>
+
+  <path d="M130,80 L220,110" class="w"/>
+  <path d="M130,135 L220,140" class="w"/>
+  <path d="M130,190 L220,170" class="w"/>
+
+  <!-- in-memory dataset -->
+  <rect x="480" y="70" width="140" height="80" rx="8" class="store"/>
+  <text x="550" y="100" class="lbl">In-Memory</text>
+  <text x="550" y="118" class="lbl">Dataset</text>
+  <text x="550" y="136" class="sub">(hash table of keys)</text>
+  <path d="M420,120 L480,110" class="w"/>
+
+  <!-- IO threads (modern redis) -->
+  <rect x="480" y="170" width="140" height="60" rx="8" class="core"/>
+  <text x="550" y="195" class="lbl">I/O Threads</text>
+  <text x="550" y="212" class="sub">(optional, parallel</text>
+  <text x="550" y="224" class="sub">read/write syscalls)</text>
+  <path d="M420,180 L480,195" class="w"/>
+
+  <!-- persistence -->
+  <rect x="670" y="60" width="120" height="60" rx="8" class="disk"/>
+  <text x="730" y="85" class="lbl">RDB</text>
+  <text x="730" y="102" class="sub">point-in-time snapshot</text>
+
+  <rect x="670" y="140" width="120" height="60" rx="8" class="disk"/>
+  <text x="730" y="165" class="lbl">AOF</text>
+  <text x="730" y="182" class="sub">append-only log</text>
+
+  <path d="M620,90 L670,90" class="w"/>
+  <path d="M620,120 L670,170" class="w"/>
+
+  <text x="410" y="270" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Commands execute one at a time on the main thread — no locks needed for data structure operations.
+  </text>
+  <text x="410" y="290" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    This atomicity is why single commands (INCR, LPUSH, etc.) and Lua scripts are inherently race-free.
+  </text>
+
+  <text x="410" y="330" text-anchor="middle" font-size="12" fill="#333">
+    See: Fundamentals → Redis Architecture and Event Loop
+  </text>
+</svg>

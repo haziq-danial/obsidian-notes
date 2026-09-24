@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mem { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .full { fill:#ffebee; stroke:#c62828; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .hdr { font-size:15px; fill:#111; text-anchor:middle; font-weight:bold; }
+  </style>
+
+  <text x="400" y="24" text-anchor="middle" font-size="16" font-weight="bold">maxmemory-policy: What Happens When Memory Fills Up</text>
+
+  <rect x="40" y="50" width="200" height="90" rx="8" class="full"/>
+  <text x="140" y="85" class="lbl">maxmemory reached</text>
+  <text x="140" y="105" class="sub">new write arrives</text>
+  <text x="140" y="122" class="sub">(SET, LPUSH, ...)</text>
+
+  <g transform="translate(300,45)">
+    <text x="230" y="0" class="hdr">Policy choices</text>
+
+    <rect x="0" y="15" width="220" height="34" class="mem"/>
+    <text x="110" y="37" class="lbl" font-size="12">noeviction → error, refuse writes</text>
+
+    <rect x="240" y="15" width="220" height="34" class="mem"/>
+    <text x="350" y="37" class="lbl" font-size="12">allkeys-lru → evict least-recently-used</text>
+
+    <rect x="0" y="55" width="220" height="34" class="mem"/>
+    <text x="110" y="77" class="lbl" font-size="12">volatile-lru → LRU, TTL keys only</text>
+
+    <rect x="240" y="55" width="220" height="34" class="mem"/>
+    <text x="350" y="77" class="lbl" font-size="12">allkeys-lfu → evict least-frequently-used</text>
+
+    <rect x="0" y="95" width="220" height="34" class="mem"/>
+    <text x="110" y="117" class="lbl" font-size="12">volatile-lfu → LFU, TTL keys only</text>
+
+    <rect x="240" y="95" width="220" height="34" class="mem"/>
+    <text x="350" y="117" class="lbl" font-size="12">volatile-ttl → evict soonest-to-expire</text>
+
+    <rect x="0" y="135" width="220" height="34" class="mem"/>
+    <text x="110" y="157" class="lbl" font-size="12">allkeys-random → evict at random</text>
+
+    <rect x="240" y="135" width="220" height="34" class="mem"/>
+    <text x="350" y="157" class="lbl" font-size="12">volatile-random → random, TTL keys only</text>
+  </g>
+
+  <text x="400" y="270" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    "volatile-*" policies only ever evict keys that have a TTL set (EXPIRE) — keys without TTL are never touched.
+  </text>
+  <text x="400" y="290" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    "allkeys-*" policies can evict ANY key, TTL or not — appropriate for a pure cache use case.
+  </text>
+  <text x="400" y="315" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Default is noeviction — safest for a primary datastore, but writes fail once full instead of silently dropping data.
+  </text>
+</svg>
