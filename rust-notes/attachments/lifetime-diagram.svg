@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="Helvetica, Arial, sans-serif">
-  <rect x="0" y="0" width="820" height="380" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 395" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="820" height="395" fill="#ffffff"/>
   <style>
     .bar { stroke-width:10; stroke-linecap:round; fill:none; }
     .lbl { font-size:13px; fill:#111; }
