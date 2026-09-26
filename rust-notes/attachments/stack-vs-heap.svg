@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .stack { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .heap { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar1); }
+  </style>
+
+  <text x="390" y="24" text-anchor="middle" font-size="16" font-weight="bold">Stack vs Heap in Rust</text>
+
+  <!-- Stack -->
+  <g transform="translate(40,50)">
+    <text x="120" y="0" class="lbl" font-weight="bold">Stack</text>
+    <rect x="0" y="20" width="240" height="36" class="stack"/>
+    <text x="120" y="43" class="lbl" font-size="12">x: i32 = 5</text>
+    <rect x="0" y="56" width="240" height="36" class="stack"/>
+    <text x="120" y="79" class="lbl" font-size="12">s: String { ptr, len, cap }</text>
+    <rect x="0" y="92" width="240" height="36" class="stack"/>
+    <text x="120" y="115" class="lbl" font-size="12">b: Box&lt;i32&gt; { ptr }</text>
+    <text x="120" y="150" class="sub">Fixed-size, known at compile time.</text>
+    <text x="120" y="165" class="sub">Pushed/popped automatically —</text>
+    <text x="120" y="180" class="sub">this is what "Drop runs at scope exit" means.</text>
+  </g>
+
+  <!-- Heap -->
+  <g transform="translate(420,50)">
+    <text x="150" y="0" class="lbl" font-weight="bold">Heap</text>
+    <rect x="0" y="70" width="130" height="40" class="heap"/>
+    <text x="65" y="94" class="lbl" font-size="12">"hello"</text>
+    <text x="65" y="128" class="sub">owned by s</text>
+
+    <rect x="180" y="70" width="90" height="40" class="heap"/>
+    <text x="225" y="94" class="lbl" font-size="12">42</text>
+    <text x="225" y="128" class="sub">owned by b</text>
+
+    <text x="150" y="170" class="sub">Dynamically sized, allocated at runtime.</text>
+    <text x="150" y="185" class="sub">Freed automatically when its owner's</text>
+    <text x="150" y="200" class="sub">Drop runs — no garbage collector needed.</text>
+  </g>
+
+  <path d="M280,76 L420,120" class="w"/>
+  <path d="M280,112 L420,180 L420,180" class="w"/>
+
+  <text x="390" y="290" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Simple types (i32, bool, fixed arrays) live entirely on the stack — cheap to copy, no allocation.
+  </text>
+  <text x="390" y="310" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Growable/owned types (String, Vec, Box) keep a small fixed-size handle on the stack pointing at heap data.
+  </text>
+  <text x="390" y="335" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Ownership rules exist precisely to know, at compile time, exactly when each heap allocation must be freed.
+  </text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .bar { stroke-width:10; stroke-linecap:round; fill:none; }
+    .lbl { font-size:13px; fill:#111; }
+    .sub { font-size:11px; fill:#555; }
+    .code { font-family: monospace; font-size:12px; fill:#111; }
+    .marker { stroke:#333; stroke-width:1.5; }
+  </style>
+
+  <text x="410" y="22" text-anchor="middle" font-size="16" font-weight="bold">Lifetimes: How Long a Reference Stays Valid</text>
+
+  <text x="40" y="50" class="code">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {</text>
+  <text x="40" y="68" class="code">    if x.len() &gt; y.len() { x } else { y }</text>
+  <text x="40" y="86" class="code">}</text>
+
+  <text x="40" y="120" class="code">fn main() {</text>
+  <text x="40" y="138" class="code">    let s1 = String::from("long string");        // ---- 'a starts</text>
+  <text x="40" y="156" class="code">    {</text>
+  <text x="40" y="174" class="code">        let s2 = String::from("short");            // -- 'b starts</text>
+  <text x="40" y="192" class="code">        let result = longest(s1.as_str(), s2.as_str());</text>
+  <text x="40" y="210" class="code">        println!("{}", result);                     // ok, both s1 &amp; s2 alive</text>
+  <text x="40" y="228" class="code">    }                                                // -- 'b ends (s2 dropped)</text>
+  <text x="40" y="246" class="code">    // println!("{}", result);  ← would be an error if used here</text>
+  <text x="40" y="264" class="code">}                                                    // ---- 'a ends</text>
+
+  <!-- timeline bars -->
+  <line x1="60" y1="300" x2="700" y2="300" class="marker"/>
+  <text x="60" y="315" class="sub">t0</text>
+  <text x="700" y="315" class="sub" text-anchor="end">t3</text>
+
+  <line x1="80" y1="330" class="bar" stroke="#3a6bc7" x2="620" y2="330"/>
+  <text x="80" y="350" class="lbl" fill="#3a6bc7">s1's lifetime</text>
+
+  <line x1="200" y1="360" class="bar" stroke="#c77a3a" x2="440" y2="360"/>
+  <text x="200" y="378" class="lbl" fill="#c77a3a">s2's lifetime (shorter, inner scope)</text>
+
+  <text x="410" y="292" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    'a is inferred as the SHORTER of the two input lifetimes — the signature promises the returned
+  </text>
+</svg>

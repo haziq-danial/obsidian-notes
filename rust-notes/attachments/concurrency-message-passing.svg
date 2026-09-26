@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .thread { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .chan { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .mutex { fill:#f5e9ff; stroke:#8a4fd1; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar3); }
+    .hdr { font-size:15px; font-weight:bold; fill:#111; text-anchor:middle; }
+  </style>
+
+  <text x="410" y="22" text-anchor="middle" font-size="16" font-weight="bold">Two Concurrency Models: Channels vs Shared State</text>
+
+  <!-- Channels -->
+  <g transform="translate(30,50)">
+    <text x="170" y="0" class="hdr">"Do not communicate by sharing memory;</text>
+    <text x="170" y="18" class="hdr">share memory by communicating." — mpsc channel</text>
+
+    <rect x="20" y="40" width="120" height="45" rx="6" class="thread"/>
+    <text x="80" y="67" class="lbl">Thread A</text>
+
+    <rect x="180" y="45" width="140" height="35" rx="17" class="chan"/>
+    <text x="250" y="67" class="lbl" font-size="11">mpsc::channel</text>
+
+    <rect x="340" y="40" width="120" height="45" rx="6" class="thread"/>
+    <text x="400" y="67" class="lbl">Thread B</text>
+
+    <path d="M140,62 L180,62" class="w"/>
+    <path d="M320,62 L340,62" class="w"/>
+    <text x="250" y="100" class="sub">tx.send(value)  →  rx.recv()</text>
+    <text x="250" y="120" class="sub">ownership of `value` MOVES through the channel —</text>
+    <text x="250" y="135" class="sub">Thread A can no longer access it after sending</text>
+  </g>
+
+  <!-- Shared state -->
+  <g transform="translate(30,200)">
+    <text x="200" y="0" class="hdr">Shared state — Arc&lt;Mutex&lt;T&gt;&gt;</text>
+
+    <rect x="60" y="30" width="110" height="45" rx="6" class="thread"/>
+    <text x="115" y="57" class="lbl">Thread A</text>
+
+    <rect x="200" y="30" width="110" height="45" rx="6" class="thread"/>
+    <text x="255" y="57" class="lbl">Thread B</text>
+
+    <rect x="340" y="30" width="110" height="45" rx="6" class="thread"/>
+    <text x="395" y="57" class="lbl">Thread C</text>
+
+    <rect x="150" y="110" width="200" height="55" rx="8" class="mutex"/>
+    <text x="250" y="132" class="lbl" font-size="12">Mutex&lt;data&gt;</text>
+    <text x="250" y="150" class="sub">wrapped in Arc for shared ownership</text>
+
+    <path d="M115,75 L200,110" class="w"/>
+    <path d="M255,75 L255,110" class="w"/>
+    <path d="M395,75 L310,110" class="w"/>
+    <text x="250" y="195" class="sub">.lock() blocks until exclusive access is granted;</text>
+    <text x="250" y="210" class="sub">the MutexGuard's Drop releases the lock automatically</text>
+  </g>
+
+  <text x="410" y="340" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    The compiler enforces correct usage of both patterns via the Send and Sync marker traits —
+  </text>
+  <text x="410" y="358" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    a data race across threads is a compile error, not a runtime bug, in safe Rust.
+  </text>
+</svg>

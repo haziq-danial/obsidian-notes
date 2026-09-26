@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar5" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .file { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar5); }
+    .code { font-family: monospace; font-size:11px; fill:#111; text-anchor:middle; }
+  </style>
+
+  <text x="420" y="22" text-anchor="middle" font-size="16" font-weight="bold">Cargo Project Layout and Workflow</text>
+
+  <!-- files -->
+  <g transform="translate(40,50)">
+    <rect x="0" y="0" width="200" height="50" rx="6" class="file"/>
+    <text x="100" y="30" class="lbl">Cargo.toml</text>
+    <text x="100" y="65" class="sub">deps, metadata, profile</text>
+
+    <rect x="0" y="90" width="200" height="50" rx="6" class="file"/>
+    <text x="100" y="120" class="lbl">Cargo.lock</text>
+    <text x="100" y="155" class="sub">exact resolved versions</text>
+
+    <rect x="0" y="180" width="200" height="50" rx="6" class="file"/>
+    <text x="100" y="205" class="lbl" font-size="11">src/main.rs</text>
+    <text x="100" y="220" class="lbl" font-size="11">or src/lib.rs</text>
+  </g>
+
+  <!-- cargo commands -->
+  <g transform="translate(320,60)">
+    <rect x="0" y="0" width="160" height="45" rx="6" class="box"/>
+    <text x="80" y="27" class="code">cargo build</text>
+
+    <rect x="0" y="60" width="160" height="45" rx="6" class="box"/>
+    <text x="80" y="87" class="code">cargo run</text>
+
+    <rect x="0" y="120" width="160" height="45" rx="6" class="box"/>
+    <text x="80" y="147" class="code">cargo test</text>
+
+    <rect x="0" y="180" width="160" height="45" rx="6" class="box"/>
+    <text x="80" y="207" class="code">cargo check</text>
+
+    <rect x="0" y="240" width="160" height="45" rx="6" class="box"/>
+    <text x="80" y="267" class="code">cargo clippy / fmt</text>
+  </g>
+  <path d="M240,75 L320,82" class="w"/>
+  <path d="M240,115 L320,142" class="w"/>
+
+  <!-- output -->
+  <g transform="translate(560,60)">
+    <rect x="0" y="0" width="220" height="90" rx="6" class="file"/>
+    <text x="110" y="30" class="lbl">target/debug/</text>
+    <text x="110" y="50" class="sub">unoptimized, fast to compile,</text>
+    <text x="110" y="65" class="sub">debug assertions on</text>
+
+    <rect x="0" y="120" width="220" height="90" rx="6" class="file"/>
+    <text x="110" y="150" class="lbl">target/release/</text>
+    <text x="110" y="170" class="sub">cargo build --release</text>
+    <text x="110" y="185" class="sub">optimized, slower to compile</text>
+  </g>
+  <path d="M480,82 L560,105" class="w"/>
+
+  <text x="420" y="330" text-anchor="middle" font-size="12" fill="#333">
+    crates.io is the central registry Cargo.toml dependencies resolve against by default,
+  </text>
+  <text x="420" y="350" text-anchor="middle" font-size="12" fill="#333">
+    downloading and compiling each crate (and transitively, its own dependencies) as part of the build.
+  </text>
+</svg>

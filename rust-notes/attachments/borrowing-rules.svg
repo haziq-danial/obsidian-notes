@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .ok { fill:#e8f5e9; stroke:#2e7d32; stroke-width:2; }
+    .bad { fill:#ffebee; stroke:#c62828; stroke-width:2; }
+    .owner { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .code { font-family: monospace; font-size:12px; fill:#111; }
+  </style>
+
+  <text x="410" y="22" text-anchor="middle" font-size="16" font-weight="bold">The Borrow Checker's Two Rules</text>
+  <text x="410" y="42" text-anchor="middle" font-size="13">At any given time: EITHER any number of shared refs (&amp;T) OR exactly one exclusive ref (&amp;mut T) — never both.</text>
+
+  <!-- Case 1: multiple shared refs OK -->
+  <g transform="translate(30,70)">
+    <rect x="0" y="0" width="360" height="130" rx="8" class="ok"/>
+    <text x="180" y="24" class="lbl" font-weight="bold">✓ Allowed: many shared borrows</text>
+    <text x="20" y="48" class="code">let s = String::from("hi");</text>
+    <text x="20" y="66" class="code">let r1 = &amp;s;</text>
+    <text x="20" y="84" class="code">let r2 = &amp;s;</text>
+    <text x="20" y="102" class="code">println!("{} {}", r1, r2);  // fine</text>
+    <text x="180" y="120" class="sub">Read-only access from multiple places is always safe</text>
+  </g>
+
+  <!-- Case 2: mutable ref alone OK -->
+  <g transform="translate(430,70)">
+    <rect x="0" y="0" width="360" height="130" rx="8" class="ok"/>
+    <text x="180" y="24" class="lbl" font-weight="bold">✓ Allowed: one exclusive borrow</text>
+    <text x="20" y="48" class="code">let mut s = String::from("hi");</text>
+    <text x="20" y="66" class="code">let r1 = &amp;mut s;</text>
+    <text x="20" y="84" class="code">r1.push_str("!");  // fine</text>
+    <text x="180" y="120" class="sub">Sole write access — no aliasing possible</text>
+  </g>
+
+  <!-- Case 3: mixing = compile error -->
+  <g transform="translate(30,220)">
+    <rect x="0" y="0" width="360" height="150" rx="8" class="bad"/>
+    <text x="180" y="24" class="lbl" font-weight="bold">✗ Rejected: mixing shared + exclusive</text>
+    <text x="20" y="48" class="code">let mut s = String::from("hi");</text>
+    <text x="20" y="66" class="code">let r1 = &amp;s;</text>
+    <text x="20" y="84" class="code">let r2 = &amp;mut s;  // ← error</text>
+    <text x="20" y="102" class="code">println!("{}", r1);</text>
+    <text x="180" y="130" class="sub">r1 could observe a value changing mid-read — data race, rejected at compile time</text>
+  </g>
+
+  <!-- Case 4: two mutable = compile error -->
+  <g transform="translate(430,220)">
+    <rect x="0" y="0" width="360" height="150" rx="8" class="bad"/>
+    <text x="180" y="24" class="lbl" font-weight="bold">✗ Rejected: two exclusive borrows</text>
+    <text x="20" y="48" class="code">let mut s = String::from("hi");</text>
+    <text x="20" y="66" class="code">let r1 = &amp;mut s;</text>
+    <text x="20" y="84" class="code">let r2 = &amp;mut s;  // ← error</text>
+    <text x="20" y="102" class="code">r1.push_str("!");</text>
+    <text x="180" y="130" class="sub">Two writers could corrupt each other's changes — rejected at compile time</text>
+  </g>
+</svg>

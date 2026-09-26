@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .stack { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .dead { fill:#f5f5f5; stroke:#999; stroke-width:2; stroke-dasharray:5,4; }
+    .heap { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar2); }
+    .code { font-family: monospace; font-size:13px; fill:#111; }
+  </style>
+
+  <text x="410" y="22" text-anchor="middle" font-size="16" font-weight="bold">Move Semantics: let s2 = s1;</text>
+
+  <text x="60" y="55" class="code">let s1 = String::from("hi");</text>
+  <text x="60" y="75" class="code">let s2 = s1;   // s1 moved into s2</text>
+  <text x="60" y="95" class="code">// println!("{}", s1);  ← compile error</text>
+
+  <!-- Before -->
+  <g transform="translate(60,130)">
+    <text x="90" y="0" class="lbl" font-weight="bold">Before the move</text>
+    <rect x="0" y="15" width="180" height="70" class="stack"/>
+    <text x="90" y="40" class="lbl" font-size="12">s1</text>
+    <text x="90" y="58" class="sub">ptr | len:2 | cap:2</text>
+    <rect x="260" y="30" width="120" height="40" class="heap"/>
+    <text x="320" y="54" class="lbl" font-size="12">"hi"</text>
+    <path d="M180,50 L260,50" class="w"/>
+  </g>
+
+  <!-- After -->
+  <g transform="translate(420,130)">
+    <text x="150" y="0" class="lbl" font-weight="bold">After the move</text>
+    <rect x="0" y="15" width="150" height="70" class="dead"/>
+    <text x="75" y="40" class="lbl" font-size="12" fill="#999">s1</text>
+    <text x="75" y="58" class="sub">invalidated —</text>
+    <text x="75" y="70" class="sub">compiler forbids use</text>
+
+    <rect x="180" y="15" width="150" height="70" class="stack"/>
+    <text x="255" y="40" class="lbl" font-size="12">s2</text>
+    <text x="255" y="58" class="sub">ptr | len:2 | cap:2</text>
+
+    <rect x="380" y="30" width="120" height="40" class="heap"/>
+    <text x="440" y="54" class="lbl" font-size="12">"hi"</text>
+    <path d="M330,50 L380,50" class="w"/>
+  </g>
+
+  <text x="410" y="260" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Only the stack handle (ptr/len/cap) is copied — the heap data is NOT duplicated.
+  </text>
+  <text x="410" y="280" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Rust then treats s1 as invalid to prevent a "double free" when both s1 and s2 would otherwise
+  </text>
+  <text x="410" y="298" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    try to free the same heap memory when they go out of scope.
+  </text>
+
+  <line x1="40" y1="330" x2="780" y2="330" stroke="#ccc"/>
+  <text x="410" y="355" text-anchor="middle" font-size="13" font-weight="bold">Types implementing Copy (i32, bool, char, tuples of Copy types) don't move — they duplicate instead:</text>
+  <text x="410" y="378" text-anchor="middle" class="code">let x = 5; let y = x; // both x and y remain valid, independent copies</text>
+</svg>
