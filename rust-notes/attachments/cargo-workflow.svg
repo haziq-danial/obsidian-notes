@@ -13,7 +13,9 @@
     .code { font-family: monospace; font-size:11px; fill:#111; text-anchor:middle; }
   </style>
 
-  <text x="420" y="22" text-anchor="middle" font-size="16" font-weight="bold">Cargo Project Layout and Workflow</text>
+  <rect x="0" y="0" width="840" height="400" fill="#ffffff"/>
+
+  <text x="420" y="22" text-anchor="middle" font-size="16" font-weight="bold" fill="#111">Cargo Project Layout and Workflow</text>
 
   <!-- files -->
   <g transform="translate(40,50)">
