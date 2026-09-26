@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="420" fill="#ffffff"/>
   <style>
     .box { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
     .pu { fill:#fff3e0; stroke:#c77a3a; stroke-width:1.5; }
