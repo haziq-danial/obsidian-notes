@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="840" height="400" fill="#ffffff"/>
+  <defs>
+    <marker id="ar8" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .err { fill:#ffebee; stroke:#c62828; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.5; fill:none; marker-end:url(#ar8); }
+    .code { font-family: monospace; font-size:11px; fill:#111; text-anchor:middle; }
+  </style>
+
+  <text x="420" y="24" text-anchor="middle" font-size="16" font-weight="bold">Error Wrapping: A Chain, Not Just a Message</text>
+
+  <rect x="30" y="60" width="190" height="60" rx="8" class="err"/>
+  <text x="125" y="85" class="lbl" font-size="12">sql.ErrNoRows</text>
+  <text x="125" y="103" class="code">the root cause</text>
+
+  <rect x="280" y="60" width="230" height="60" rx="8" class="err"/>
+  <text x="395" y="85" class="lbl" font-size="12">fmt.Errorf("query user: %w", err)</text>
+  <text x="395" y="103" class="code">wraps the root cause</text>
+
+  <rect x="570" y="60" width="230" height="60" rx="8" class="err"/>
+  <text x="685" y="85" class="lbl" font-size="12">fmt.Errorf("handler: %w", err)</text>
+  <text x="685" y="103" class="code">wraps that, in turn</text>
+
+  <path d="M220,90 L280,90" class="w"/>
+  <path d="M510,90 L570,90" class="w"/>
+
+  <text x="420" y="160" text-anchor="middle" font-size="13" font-weight="bold">The %w verb preserves this chain — errors.Unwrap() walks it one link at a time</text>
+
+  <rect x="60" y="185" width="700" height="50" rx="8" fill="#fff3e0" stroke="#c77a3a" stroke-width="1.5"/>
+  <text x="410" y="215" class="code" font-size="13">errors.Is(err, sql.ErrNoRows)   →  true, even though err's own message is "handler: ..."</text>
+
+  <rect x="60" y="250" width="700" height="50" rx="8" fill="#fff3e0" stroke="#c77a3a" stroke-width="1.5"/>
+  <text x="410" y="280" class="code" font-size="13">errors.As(err, &amp;myCustomErrType)  →  finds a matching TYPE anywhere in the chain</text>
+
+  <text x="420" y="335" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    Without %w (using %v or string concatenation instead), the chain is broken — errors.Is/As
+  </text>
+  <text x="420" y="353" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    can no longer see past that point, even though the printed message might look identical.
+  </text>
+</svg>

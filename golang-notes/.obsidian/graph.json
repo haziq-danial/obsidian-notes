@@ -1,0 +1,23 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    { "query": "path:\"00 MOC\"", "color": { "a": 1, "rgb": 14701138 } },
+    { "query": "path:\"01 Fundamentals\"", "color": { "a": 1, "rgb": 5431378 } },
+    { "query": "path:\"02 Composite Types\"", "color": { "a": 1, "rgb": 14027846 } },
+    { "query": "path:\"03 Concurrency\"", "color": { "a": 1, "rgb": 3441314 } },
+    { "query": "path:\"04 Interfaces and Generics\"", "color": { "a": 1, "rgb": 9445586 } },
+    { "query": "path:\"05 Error Handling\"", "color": { "a": 1, "rgb": 15761536 } },
+    { "query": "path:\"06 Packages and Modules\"", "color": { "a": 1, "rgb": 2201331 } },
+    { "query": "path:\"07 Standard Library and Tooling\"", "color": { "a": 1, "rgb": 12345666 } },
+    { "query": "path:\"08 Memory and Runtime\"", "color": { "a": 1, "rgb": 16729386 } },
+    { "query": "path:\"09 Glossary\"", "color": { "a": 1, "rgb": 8355711 } }
+  ],
+  "collapse-display": true,
+  "showArrow": true
+}

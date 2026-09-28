@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="860" height="460" fill="#ffffff"/>
+  <defs>
+    <marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .g { fill:#e8f5e9; stroke:#2e7d32; stroke-width:1.5; }
+    .p { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .m { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .q { fill:#f5f5f5; stroke:#999; stroke-width:1.3; stroke-dasharray:3,3; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.5; fill:none; marker-end:url(#ar3); }
+  </style>
+
+  <text x="430" y="24" text-anchor="middle" font-size="16" font-weight="bold">The GMP Scheduler Model</text>
+
+  <!-- Global run queue -->
+  <rect x="330" y="45" width="200" height="40" rx="6" class="q"/>
+  <text x="430" y="69" class="sub">Global Run Queue (overflow)</text>
+
+  <!-- P1 with local queue and M -->
+  <g transform="translate(60,120)">
+    <text x="110" y="-10" class="lbl" font-weight="bold">P (Processor 1)</text>
+    <rect x="0" y="0" width="220" height="50" rx="8" class="p"/>
+    <text x="110" y="30" class="sub">Local run queue: G1 G2 G3</text>
+    <circle cx="35" cy="90" r="16" class="g"/><text x="35" y="94" class="sub" font-size="9">G1</text>
+    <circle cx="80" cy="90" r="16" class="g"/><text x="80" y="94" class="sub" font-size="9">G2</text>
+    <circle cx="125" cy="90" r="16" class="g"/><text x="125" y="94" class="sub" font-size="9">G3</text>
+    <rect x="30" y="130" width="150" height="45" rx="6" class="m"/>
+    <text x="105" y="157" class="sub">M (OS thread)</text>
+    <path d="M110,50 L110,130" class="w"/>
+  </g>
+
+  <!-- P2 with local queue and M -->
+  <g transform="translate(340,120)">
+    <text x="110" y="-10" class="lbl" font-weight="bold">P (Processor 2)</text>
+    <rect x="0" y="0" width="220" height="50" rx="8" class="p"/>
+    <text x="110" y="30" class="sub">Local run queue: G4 G5</text>
+    <circle cx="60" cy="90" r="16" class="g"/><text x="60" y="94" class="sub" font-size="9">G4</text>
+    <circle cx="105" cy="90" r="16" class="g"/><text x="105" y="94" class="sub" font-size="9">G5</text>
+    <rect x="30" y="130" width="150" height="45" rx="6" class="m"/>
+    <text x="105" y="157" class="sub">M (OS thread)</text>
+    <path d="M110,50 L110,130" class="w"/>
+  </g>
+
+  <!-- P3 idle -->
+  <g transform="translate(620,120)">
+    <text x="110" y="-10" class="lbl" font-weight="bold">P (Processor 3)</text>
+    <rect x="0" y="0" width="220" height="50" rx="8" class="p"/>
+    <text x="110" y="30" class="sub">Local run queue: (empty)</text>
+    <rect x="30" y="130" width="150" height="45" rx="6" class="m"/>
+    <text x="105" y="157" class="sub">M (OS thread)</text>
+    <path d="M110,50 L110,130" class="w"/>
+  </g>
+
+  <path d="M400,85 L170,120" class="w"/>
+  <path d="M460,85 L450,120" class="w"/>
+
+  <text x="430" y="340" text-anchor="middle" font-size="12" fill="#333">
+    G = Goroutine (lightweight, ~2KB starting stack) · M = Machine (an OS thread) · P = Processor (scheduling context)
+  </text>
+  <text x="430" y="360" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    GOMAXPROCS sets the number of P's — at most that many goroutines run truly in parallel at once.
+  </text>
+  <text x="430" y="385" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    An idle P (like P3) can "work-steal" goroutines from a busy P's local queue instead of sitting empty.
+  </text>
+  <text x="430" y="410" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    A goroutine that blocks on a syscall detaches its M; the P is handed to a fresh or idle M so it keeps running others.
+  </text>
+</svg>
