@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="840" height="380" fill="#ffffff"/>
+  <defs>
+    <marker id="ar1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#444"/>
+    </marker>
+  </defs>
+  <style>
+    .src { fill:#eef4ff; stroke:#3a6bc7; stroke-width:2; }
+    .proc { fill:#fff3e0; stroke:#c77a3a; stroke-width:2; }
+    .out { fill:#e8f5e9; stroke:#2e7d32; stroke-width:2; }
+    .lbl { font-size:13px; fill:#111; text-anchor:middle; }
+    .sub { font-size:11px; fill:#555; text-anchor:middle; }
+    .w { stroke:#444; stroke-width:1.8; fill:none; marker-end:url(#ar1); }
+  </style>
+
+  <text x="420" y="24" text-anchor="middle" font-size="16" font-weight="bold">go build: Source to Static Binary</text>
+
+  <rect x="30" y="60" width="140" height="55" rx="6" class="src"/>
+  <text x="100" y="83" class="lbl">.go source</text>
+  <text x="100" y="100" class="sub">files + go.mod</text>
+
+  <rect x="220" y="60" width="150" height="55" rx="6" class="proc"/>
+  <text x="295" y="83" class="lbl">Parser</text>
+  <text x="295" y="100" class="sub">→ AST</text>
+
+  <rect x="420" y="60" width="150" height="55" rx="6" class="proc"/>
+  <text x="495" y="83" class="lbl">Type Checker</text>
+  <text x="495" y="100" class="sub">+ SSA generation</text>
+
+  <rect x="620" y="60" width="160" height="55" rx="6" class="proc"/>
+  <text x="700" y="83" class="lbl">Backend</text>
+  <text x="700" y="100" class="sub">optimize + codegen</text>
+
+  <path d="M170,87 L220,87" class="w"/>
+  <path d="M370,87 L420,87" class="w"/>
+  <path d="M570,87 L620,87" class="w"/>
+
+  <rect x="420" y="160" width="160" height="55" rx="6" class="proc"/>
+  <text x="500" y="183" class="lbl">Linker</text>
+  <text x="500" y="200" class="sub">combines packages + runtime</text>
+  <path d="M700,115 L500,160" class="w"/>
+
+  <rect x="620" y="240" width="160" height="60" rx="6" class="out"/>
+  <text x="700" y="265" class="lbl">Single static binary</text>
+  <text x="700" y="282" class="sub">runtime + GC statically linked in</text>
+  <path d="M540,215 L640,240" class="w"/>
+
+  <text x="420" y="330" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    No separate VM or interpreter needed at runtime — the Go runtime (scheduler, GC) ships inside every binary.
+  </text>
+  <text x="420" y="350" text-anchor="middle" font-size="12" fill="#333" font-style="italic">
+    GOOS/GOARCH env vars let the same source cross-compile to a binary for any supported OS/architecture.
+  </text>
+</svg>
