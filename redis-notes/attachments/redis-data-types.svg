@@ -84,9 +84,10 @@
   <g transform="translate(20,390)">
     <text x="130" y="0" class="hdr">Bitmap / HyperLogLog / Geo</text>
     <rect x="0" y="15" width="260" height="18" class="cell"/>
-    <text x="130" y="28" class="lbl" font-size="10">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 1 (bitmap: online users)</text>
-    <text x="130" y="55" class="sub">HyperLogLog: approx-distinct-count in ~12KB regardless of cardinality</text>
-    <text x="130" y="72" class="sub">Geo: sorted set under the hood, scored by geohash</text>
+    <text x="130" y="28" class="lbl" font-size="9">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 1</text>
+    <text x="130" y="47" class="sub" font-size="10">bitmap: online users, 1 bit each</text>
+    <text x="130" y="65" class="sub" font-size="10">HyperLogLog: ~12KB, any cardinality</text>
+    <text x="130" y="81" class="sub" font-size="10">Geo: sorted set scored by geohash</text>
   </g>
 
   <g transform="translate(560,390)">
