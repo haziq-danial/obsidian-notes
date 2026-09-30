@@ -38,7 +38,10 @@
     <line x1="60" y1="166" x2="160" y2="70" class="line"/>
     <line x1="60" y1="94" x2="160" y2="94" class="line"/>
     <line x1="60" y1="190" x2="160" y2="94" class="line"/>
-    <text x="130" y="230" class="lbl">Each block maps to exactly ONE cache line: (block #) mod (#lines)</text>
+    <text x="130" y="230" class="lbl" font-size="10.5">
+      <tspan x="130" dy="0">Each block maps to exactly ONE</tspan>
+      <tspan x="130" dy="14">cache line: (block #) mod (#lines)</tspan>
+    </text>
   </g>
 
   <!-- Fully associative -->
@@ -62,7 +65,10 @@
     <line x1="60" y1="70" x2="160" y2="46" class="line"/>
     <line x1="60" y1="94" x2="160" y2="22" class="line"/>
     <line x1="60" y1="94" x2="160" y2="46" class="line"/>
-    <text x="130" y="230" class="lbl">Any block can go in any line — needs full tag comparison (CAM), most flexible, costliest hardware</text>
+    <text x="130" y="230" class="lbl" font-size="10.5">
+      <tspan x="130" dy="0">Any block can go in any line — needs full</tspan>
+      <tspan x="130" dy="14">tag comparison (CAM); most flexible, costliest</tspan>
+    </text>
   </g>
 
   <!-- Set associative -->
@@ -88,6 +94,9 @@
     <line x1="60" y1="46" x2="160" y2="94" class="line"/>
     <line x1="60" y1="94" x2="160" y2="70" class="line"/>
     <line x1="60" y1="94" x2="160" y2="94" class="line"/>
-    <text x="130" y="230" class="lbl">Block maps to one SET of N lines (N-way); within the set, any of N ways may hold it</text>
+    <text x="130" y="230" class="lbl" font-size="10.5">
+      <tspan x="130" dy="0">Block maps to one SET of N lines (N-way);</tspan>
+      <tspan x="130" dy="14">within the set, any of N ways may hold it</tspan>
+    </text>
   </g>
 </svg>
